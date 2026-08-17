@@ -1,6 +1,7 @@
+import 'package:news_hw/core/util/transformable.dart';
 import 'package:news_hw/features/news/domain/models/news_article_model.dart';
 
-final class NewsModel {
+final class NewsModel with Transformable<NewsArticleModel> {
   final String? author;
   final String? title;
   final String? description;
@@ -33,7 +34,8 @@ final class NewsModel {
     );
   }
 
-  NewsArticleModel convertToEntity() {
+  @override
+  NewsArticleModel transform() {
     return NewsArticleModel(
       author: author ?? '',
       title: title ?? '',

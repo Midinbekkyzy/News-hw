@@ -8,7 +8,7 @@ final class GetNewsUseCase {
 
   final NewsRepository repository;
 
-  Future<List<NewsArticleModel>> call() async {
-    return repository.getNews();
+  Future<List<NewsArticleModel>> call({required String query}) async {
+    return repository.getNews(query: query);
   }
 }

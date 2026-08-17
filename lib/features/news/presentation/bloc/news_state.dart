@@ -14,7 +14,11 @@ final class ErrorNewsState extends NewsState {
 }
 
 final class LoadedNewsState extends NewsState {
-  LoadedNewsState({required this.news});
+  LoadedNewsState({
+    required this.news,
+    required this.query,
+  });
 
   final List<NewsArticleModel> news;
+  final String query;
 }
