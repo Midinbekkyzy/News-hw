@@ -41,6 +41,8 @@ dependencies:
   talker_dio_logger: ^4.9.3
   bloc: ^9.0.0
   cached_network_image: ^3.4.1
+  flutter_secure_storage: ^9.2.4
+  shared_preferences: ^2.5.3
 
 dev_dependencies:
   flutter_test:

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:news_hw/core/di/service_locator.dart';
-import 'package:news_hw/features/news/presentation/news_page.dart';
+import 'package:news_hw/features/splash/presentation/splash_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
           surface: Colors.white,
         ),
       ),
-      home: const NewsPage(),
+      home: const SplashPage(),
     );
   }
 }
