@@ -1,8 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:news_hw/core/di/service_locator.dart';
+import 'package:news_hw/core/router/app_router.gr.dart';
 import 'package:news_hw/features/auth/domain/repo/auth_repository.dart';
-import 'package:news_hw/features/auth/presentation/auth_page.dart';
 
+@RoutePage()
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
@@ -144,9 +146,6 @@ class ProfilePage extends StatelessWidget {
       return;
     }
 
-    Navigator.of(context).pushAndRemoveUntil(
-      MaterialPageRoute<void>(builder: (_) => const AuthPage()),
-      (_) => false,
-    );
+    await context.router.replaceAll([const AuthRoute()]);
   }
 }

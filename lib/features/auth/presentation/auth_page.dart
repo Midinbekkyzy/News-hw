@@ -1,9 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_hw/core/di/service_locator.dart';
+import 'package:news_hw/core/router/app_router.gr.dart';
 import 'package:news_hw/features/auth/presentation/cubit/auth_cubit.dart';
-import 'package:news_hw/features/main/presentation/main_page.dart';
 
+@RoutePage()
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
 
@@ -84,11 +86,7 @@ class _AuthPageState extends State<AuthPage> {
                           BlocConsumer<AuthCubit, AuthState>(
                             listener: (context, state) {
                               if (state is SuccessAuthState) {
-                                Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute<void>(
-                                    builder: (_) => const MainPage(),
-                                  ),
-                                );
+                                context.router.replaceAll([const MainRoute()]);
                               }
 
                               if (state is ErrorAuthState) {

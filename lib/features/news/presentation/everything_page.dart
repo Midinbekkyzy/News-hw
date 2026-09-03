@@ -1,11 +1,13 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:news_hw/core/di/service_locator.dart';
+import 'package:news_hw/core/router/app_router.gr.dart';
 import 'package:news_hw/features/news/domain/models/news_article_model.dart';
 import 'package:news_hw/features/news/presentation/adapter/news_paging_adapter.dart';
-import 'package:news_hw/features/news/presentation/news_detail_page.dart';
 import 'package:news_hw/features/news/presentation/widgets/everything_news_card.dart';
 import 'package:paging_view/paging_view.dart';
 
+@RoutePage()
 class EveryThingPage extends StatefulWidget {
   const EveryThingPage({super.key});
 
@@ -70,10 +72,6 @@ class _EveryThingPageState extends State<EveryThingPage> {
   }
 
   void _openDetails(BuildContext context, NewsArticleModel article) {
-    Navigator.of(context).push(
-      MaterialPageRoute<void>(
-        builder: (_) => NewsDetailPage(article: article),
-      ),
-    );
+    context.router.push(NewsDetailRoute(article: article));
   }
 }

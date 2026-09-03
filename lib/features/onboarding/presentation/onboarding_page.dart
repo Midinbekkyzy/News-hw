@@ -1,8 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:news_hw/core/di/service_locator.dart';
+import 'package:news_hw/core/router/app_router.gr.dart';
 import 'package:news_hw/core/service/storage_service/shared_preferences_service.dart';
-import 'package:news_hw/features/auth/presentation/auth_page.dart';
 
+@RoutePage()
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
 
@@ -51,9 +53,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
     if (!mounted) {
       return;
     }
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute<void>(builder: (_) => const AuthPage()),
-    );
+    await context.router.replaceAll([const AuthRoute()]);
   }
 
   void _next() {

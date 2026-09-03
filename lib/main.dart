@@ -3,9 +3,9 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:news_hw/core/di/service_locator.dart';
+import 'package:news_hw/core/router/app_router.dart';
 import 'package:news_hw/core/service/firebase_service/push_backround_handler.dart';
 import 'package:news_hw/core/service/firebase_service/push_foreground_service.dart';
-import 'package:news_hw/features/splash/presentation/splash_page.dart';
 import 'package:news_hw/firebase_options.dart';
 
 void main() async {
@@ -24,15 +24,18 @@ void main() async {
     await getIt<PushForegroundService>().initialize();
   }
 
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  MyApp({super.key});
+
+  final _appRouter = AppRouter();
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: _appRouter.config(),
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
@@ -43,7 +46,6 @@ class MyApp extends StatelessWidget {
           surface: Colors.white,
         ),
       ),
-      home: const SplashPage(),
     );
   }
 }

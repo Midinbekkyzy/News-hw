@@ -1,12 +1,14 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_hw/core/di/service_locator.dart';
+import 'package:news_hw/core/router/app_router.gr.dart';
 import 'package:news_hw/features/news/domain/models/news_article_model.dart';
 import 'package:news_hw/features/news/presentation/bloc/news_bloc.dart';
-import 'package:news_hw/features/news/presentation/news_detail_page.dart';
 import 'package:news_hw/features/news/presentation/widgets/news_search_field.dart';
 import 'package:news_hw/features/news/presentation/widgets/news_section.dart';
 
+@RoutePage()
 class NewsPage extends StatelessWidget {
   const NewsPage({super.key});
 
@@ -67,30 +69,7 @@ class _NewsView extends StatelessWidget {
   }
 
   void _openDetails(BuildContext context, NewsArticleModel article) {
-    Navigator.of(context).push(
-      PageRouteBuilder<void>(
-        transitionDuration: const Duration(milliseconds: 520),
-        reverseTransitionDuration: const Duration(milliseconds: 420),
-        pageBuilder: (_, _, _) => NewsDetailPage(article: article),
-        transitionsBuilder: (_, animation, _, child) {
-          final curvedAnimation = CurvedAnimation(
-            parent: animation,
-            curve: Curves.easeOutCubic,
-            reverseCurve: Curves.easeInCubic,
-          );
-          return FadeTransition(
-            opacity: curvedAnimation,
-            child: SlideTransition(
-              position: Tween<Offset>(
-                begin: const Offset(0, 0.08),
-                end: Offset.zero,
-              ).animate(curvedAnimation),
-              child: child,
-            ),
-          );
-        },
-      ),
-    );
+    context.router.push(NewsDetailRoute(article: article));
   }
 }
 

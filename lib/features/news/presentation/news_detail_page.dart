@@ -1,9 +1,11 @@
 import 'dart:math' as math;
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:news_hw/features/news/domain/models/news_article_model.dart';
 import 'package:news_hw/features/news/presentation/widgets/news_image.dart';
 
+@RoutePage()
 class NewsDetailPage extends StatelessWidget {
   const NewsDetailPage({super.key, required this.article});
 
@@ -122,7 +124,7 @@ class NewsDetailPage extends StatelessWidget {
                                 alignment: Alignment.centerLeft,
                                 child: IconButton(
                                   onPressed: () =>
-                                      Navigator.of(context).maybePop(),
+                                      context.router.maybePop(),
                                   padding: EdgeInsets.zero,
                                   alignment: Alignment.centerLeft,
                                   constraints: const BoxConstraints(
