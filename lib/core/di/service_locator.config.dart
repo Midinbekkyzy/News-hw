@@ -10,10 +10,15 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:dio/dio.dart' as _i361;
+import 'package:firebase_messaging/firebase_messaging.dart' as _i892;
+import 'package:flutter_local_notifications/flutter_local_notifications.dart'
+    as _i163;
 import 'package:flutter_secure_storage/flutter_secure_storage.dart' as _i558;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:news_hw/core/di/service_locator.dart' as _i446;
+import 'package:news_hw/core/service/firebase_service/push_foreground_service.dart'
+    as _i1052;
 import 'package:news_hw/core/service/storage_service/secure_storage_service.dart'
     as _i385;
 import 'package:news_hw/core/service/storage_service/shared_preferences_service.dart'
@@ -28,6 +33,8 @@ import 'package:news_hw/features/auth/domain/repo/auth_repository.dart'
     as _i320;
 import 'package:news_hw/features/auth/presentation/cubit/auth_cubit.dart'
     as _i513;
+import 'package:news_hw/features/main/presentation/bloc/main_bloc.dart'
+    as _i545;
 import 'package:news_hw/features/news/data/data_source/abstract/news_data_source.dart'
     as _i662;
 import 'package:news_hw/features/news/data/data_source/remote/news_data_source_impl.dart'
@@ -61,13 +68,32 @@ extension GetItInjectableX on _i174.GetIt {
       preResolve: true,
     );
     gh.singleton<_i993.Talker>(() => appModule.talker);
+    gh.singleton<_i892.FirebaseMessaging>(() => appModule.firebaseMessaging);
+    gh.singleton<_i163.FlutterLocalNotificationsPlugin>(
+      () => appModule.flutterLocalNotificationsPlugin,
+    );
     gh.lazySingleton<_i407.SharedPreferencesService>(
       () => _i407.SharedPreferencesService(gh<_i460.SharedPreferences>()),
     );
     gh.lazySingleton<_i385.SecureStorageService>(
       () => _i385.SecureStorageService(gh<_i558.FlutterSecureStorage>()),
     );
+    gh.factory<_i545.MainBloc>(
+      () => _i545.MainBloc(
+        firebaseMessaging: gh<_i892.FirebaseMessaging>(),
+        talker: gh<_i993.Talker>(),
+      ),
+    );
     gh.singleton<_i361.Dio>(() => appModule.dio(gh<_i993.Talker>()));
+    gh.lazySingleton<_i1052.PushForegroundService>(
+      () => _i1052.PushForegroundService(
+        dio: gh<_i361.Dio>(),
+        firebaseMessaging: gh<_i892.FirebaseMessaging>(),
+        flutterLocalNotificationsPlugin:
+            gh<_i163.FlutterLocalNotificationsPlugin>(),
+        talker: gh<_i993.Talker>(),
+      ),
+    );
     gh.lazySingleton<_i1040.AuthDataSource>(
       () => _i890.AuthDataSourceImpl(
         gh<_i385.SecureStorageService>(),

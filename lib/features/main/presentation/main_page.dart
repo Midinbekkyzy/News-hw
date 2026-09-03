@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:news_hw/core/di/service_locator.dart';
+import 'package:news_hw/features/main/presentation/bloc/main_bloc.dart';
 import 'package:news_hw/features/main/presentation/widgets/app_bottom_navigation.dart';
 import 'package:news_hw/features/news/presentation/everything_page.dart';
 import 'package:news_hw/features/news/presentation/news_page.dart';
@@ -18,12 +21,17 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      extendBody: true,
-      body: IndexedStack(index: _currentIndex, children: _pages),
-      bottomNavigationBar: AppBottomNavigation(
-        currentIndex: _currentIndex,
-        onTap: (index) => setState(() => _currentIndex = index),
+    return BlocProvider(
+      lazy: false,
+      create: (_) =>
+          getIt<MainBloc>()..add(CheckNotificationPermissionEvent()),
+      child: Scaffold(
+        extendBody: true,
+        body: IndexedStack(index: _currentIndex, children: _pages),
+        bottomNavigationBar: AppBottomNavigation(
+          currentIndex: _currentIndex,
+          onTap: (index) => setState(() => _currentIndex = index),
+        ),
       ),
     );
   }
