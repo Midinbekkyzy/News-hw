@@ -12,4 +12,9 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<bool> auth(String login, String password) async {
     return dataSource.auth(login, password);
   }
+
+  @override
+  Future<void> logout() {
+    return dataSource.logout();
+  }
 }

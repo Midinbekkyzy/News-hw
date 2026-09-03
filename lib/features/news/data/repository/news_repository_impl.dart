@@ -15,4 +15,16 @@ class NewsRepositoryImpl implements NewsRepository {
     final data = await dataSource.getNews(query: query);
     return data.transform();
   }
+
+  @override
+  Future<NewsResponseEntity> getNewsPaging({
+    required int pageSize,
+    required int page,
+  }) async {
+    final result = await dataSource.getNewsPaging(
+      pageSize: pageSize,
+      page: page,
+    );
+    return result.transform();
+  }
 }

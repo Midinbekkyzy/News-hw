@@ -38,6 +38,8 @@ import 'package:news_hw/features/news/domain/repository/news_repository.dart'
     as _i618;
 import 'package:news_hw/features/news/domain/use_case/get_news_use_case.dart'
     as _i682;
+import 'package:news_hw/features/news/presentation/adapter/news_paging_adapter.dart'
+    as _i414;
 import 'package:news_hw/features/news/presentation/bloc/news_bloc.dart'
     as _i1022;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
@@ -86,6 +88,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i513.AuthCubit>(
       () => _i513.AuthCubit(authRepository: gh<_i320.AuthRepository>()),
+    );
+    gh.factory<_i414.NewsPagingAdapter>(
+      () => _i414.NewsPagingAdapter(newsRepository: gh<_i618.NewsRepository>()),
     );
     gh.factory<_i1022.NewsBloc>(
       () => _i1022.NewsBloc(getNews: gh<_i682.GetNewsUseCase>()),

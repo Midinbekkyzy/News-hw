@@ -17,3 +17,13 @@ class NewsArticleModel {
     required this.content,
   });
 }
+
+final class NewsResponseEntity {
+  final int totalResults;
+  final List<NewsArticleModel> articles;
+
+  NewsResponseEntity({
+    required this.totalResults,
+    required this.articles,
+  });
+}

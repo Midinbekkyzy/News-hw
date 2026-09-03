@@ -25,4 +25,22 @@ class NewsDataSourceImpl implements NewsDataSource {
     final list = response.data['articles'] as List;
     return list.map((model) => NewsModel.fromJson(model)).toList();
   }
+
+  @override
+  Future<NewsResponseModel> getNewsPaging({
+    required int pageSize,
+    required int page,
+  }) async {
+    final Response response = await dio.get(
+      'v2/everything',
+      queryParameters: {
+        'q': 'sport',
+        'sortBy': 'publishedAt',
+        'pageSize': pageSize,
+        'page': page,
+        'apiKey': _apiKey,
+      },
+    );
+    return NewsResponseModel.fromJson(response.data);
+  }
 }

@@ -3,7 +3,7 @@ import 'package:news_hw/core/di/service_locator.dart';
 import 'package:news_hw/core/service/storage_service/secure_storage_service.dart';
 import 'package:news_hw/core/service/storage_service/shared_preferences_service.dart';
 import 'package:news_hw/features/auth/presentation/auth_page.dart';
-import 'package:news_hw/features/news/presentation/news_page.dart';
+import 'package:news_hw/features/main/presentation/main_page.dart';
 import 'package:news_hw/features/onboarding/presentation/onboarding_page.dart';
 
 class SplashPage extends StatefulWidget {
@@ -44,7 +44,7 @@ class _SplashPageState extends State<SplashPage> {
     }
 
     if (token != null && token.isNotEmpty) {
-      _replace(const NewsPage());
+      _replace(const MainPage());
       return;
     }
 

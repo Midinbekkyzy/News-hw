@@ -552,6 +552,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.2.0"
+  paging_view:
+    dependency: "direct main"
+    description:
+      name: paging_view
+      sha256: b8a3bf1440931163e7cc98b6a243fb5741dc4b5b3f10fcf35c42449b905da826
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.5.6"
   path:
     dependency: transitive
     description:

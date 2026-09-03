@@ -60,4 +60,9 @@ class AuthDataSourceImpl implements AuthDataSource {
 
     return false;
   }
+
+  @override
+  Future<void> logout() {
+    return secureStorageService.deleteAll();
+  }
 }

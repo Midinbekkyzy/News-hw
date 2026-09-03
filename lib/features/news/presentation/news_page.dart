@@ -109,7 +109,7 @@ class _NewsContent extends StatelessWidget {
 
     return ListView(
       physics: const BouncingScrollPhysics(),
-      padding: const EdgeInsets.only(top: 73, bottom: 28),
+      padding: const EdgeInsets.only(top: 73, bottom: 120),
       children: [
         const Padding(
           padding: EdgeInsets.symmetric(horizontal: 30),
